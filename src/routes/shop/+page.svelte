@@ -260,4 +260,9 @@
     <div class="card preset-filled-primary-900-100 fixed bottom-0 right-0 mb-[2vw] mr-[2vw] w-[10vw] h-[10vh]">
         <div id="coins" class="flex justify-center items-center w-full h-full"></div>
     </div>
+{:else}
+    <div class="flex flex-col justify-center items-center w-full h-[80vh]">
+        <h1 class="h1">You shouldn't be here!</h1>
+        <p class="p">Log in to have acces to this page</p>
+    </div>
 {/if}
