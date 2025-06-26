@@ -3,7 +3,7 @@
     import Header from "$lib/components/Header.svelte";
     
     import { goto } from '$app/navigation';
-    import { login, setLoggedTrue } from '$lib/firebase/auth';
+    import { login } from '$lib/firebase/auth';
 
     let email: string = '';
     let password: string = '';
@@ -12,7 +12,6 @@
     async function handleLogin() {
         try {
             await login(email, password);
-            setLoggedTrue();
             goto('/');
         } catch (err) {
             error = "Something went wrong."
@@ -23,13 +22,19 @@
 </script>
 
 <Header />
-
-<h1 class="h1">Welcome back!</h1>
-<form on:submit|preventDefault={handleLogin}>
-    <input type="text" class="input" placeholder="Email" bind:value={email} required />
-    <input type="password" class="input" placeholder="Password" bind:value={password} required />
-    <button class="btn preset-filled">Log In</button>
-</form>
-{#if error}
-    <p class="p">{error}</p>
-{/if}
+<div class="flex flex-col justify-center items-center w-full h-[80vh]">
+    <h1 class="h1">Welcome back!</h1>
+    <br>
+    <form class="flex flex-col items-center" on:submit|preventDefault={handleLogin}>
+        <input type="text" class="input w-[20vw] text-center" placeholder="Email" bind:value={email} required />
+        <input type="password" class="input w-[20vw] text-center" placeholder="Password" bind:value={password} required />
+        <br>
+        <button class="btn preset-filled w-[15vw]">Log In</button>
+    </form>
+    <br>
+    {#if error}
+        <p class="p text-warning-900">{error}</p>
+    {:else}
+        <p class="p">‎</p>
+    {/if}
+</div>

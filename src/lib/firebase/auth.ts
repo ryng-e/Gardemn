@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { browserLocalPersistence, createUserWithEmailAndPassword, setPersistence, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from './firebase'
 
 export const register = (email: string, password: string) => createUserWithEmailAndPassword(auth, email, password);
@@ -7,16 +7,10 @@ export const login = (email: string, password: string) => signInWithEmailAndPass
 
 export const logout = () => signOut(auth);
 
-// Variables that know if user is logged
-let logged: boolean = false;
+await setPersistence(auth, browserLocalPersistence);
+
 export function getLogged(): boolean {
-    return logged;
-}
-export function setLoggedTrue() {
-    logged = true;
-}
-export function setLoggedFalse() {
-    logged = false;
+    return ((auth.currentUser) ? true : false);
 }
 
 export function getUid(): string {

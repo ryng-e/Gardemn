@@ -1,11 +1,10 @@
 <script lang="ts">
 
     import { goto } from "$app/navigation";
-    import { getLogged, logout, setLoggedFalse } from "$lib/firebase/auth";
+    import { getLogged, logout } from "$lib/firebase/auth";
     
     async function localLogout() {
         await logout();
-        setLoggedFalse();
         goto('/login');
     }
 
