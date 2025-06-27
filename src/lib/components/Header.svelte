@@ -17,8 +17,9 @@
             <a href="/login"><button class="btn preset-filled w-[20vw]">login</button></a>
             <a href="/register"><button class="btn preset-filled w-[20vw]">register</button></a>
         {:else}
-            <a href="/profile"><button id="username" class="btn preset-filled w-[20vw]">profile</button></a>
-            <a href="/shop"><button id="username" class="btn preset-filled w-[20vw]">shop</button></a>
+            <a href="/"><button class="btn preset-filled w-[20vw]">garden</button></a>
+            <a href="/profile"><button class="btn preset-filled w-[20vw]">profile</button></a>
+            <a href="/shop"><button class="btn preset-filled w-[20vw]">shop</button></a>
             <button class="btn preset-filled w-[20vw]" on:click={localLogout}>logout</button>
         {/if}
     </div>
