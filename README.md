@@ -23,3 +23,14 @@ If you wait long enough (and refresh the page) you will see it blossomed!
 
 When your flowers is finally blossemed is time to sell them with the button on the left corner.
 Every flower have a different sell value, try them all!
+
+## How to customize your profile
+
+### Buy icons and borders in the shop
+
+Go to the shop to buy the icon or border you want to equip.
+
+### Select them in the profile
+
+Return to the profile and select want you want to use.
+All of the people who follow you can see what you have equipped!
