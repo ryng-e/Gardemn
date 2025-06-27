@@ -29,12 +29,13 @@
                 await setDoc(doc(db, "users", uid), {
                     username: username,
                     owner: uid,
-                    coins: 100,
+                    coins: 500,
                     seeds: [0, 0, 0, 0],
                     icons: [false, false, false, false],
                     borders: [false, false, false],
                     activeIcon: "DefaultUserIcon",
-                    activeBorder: null
+                    activeBorder: "null",
+                    follow: []
                 });
                 await setDoc(doc(db, "gardens", uid), {
                     owner: uid,
