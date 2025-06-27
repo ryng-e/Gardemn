@@ -6,13 +6,14 @@
     import { collection, doc, DocumentReference, DocumentSnapshot, getDoc, getDocs, orderBy, query, Timestamp, updateDoc, type DocumentData } from "firebase/firestore";
 
     let seedSelected: (string | null) = null;
-
+    let notificationsAllowed = true;
+    
     // function that print your garden
     async function getFlowers():Promise<void> {
         
         const gardenInfo = await getDoc(doc(db, "gardens", getUid()));
         if(gardenInfo.exists()) {
-
+            
             const gardenFlower: any[] = gardenInfo.data().flowers;
             const gardenSize: number = gardenFlower.length;
             for(let i: number = 0; i < gardenSize; i++) {
@@ -177,10 +178,37 @@
                                 userFlowerData[id].name = flowerInfo.data().name;
                                 
                                 const rn = new Date();
-                                rn.setMinutes(rn.getMinutes() + flowerInfo.data().time);
-                                userFlowerData[id].ready = Timestamp.fromDate(rn);
+                                const rnUpdate = new Date();
+                                rnUpdate.setMinutes(rnUpdate.getMinutes() + flowerInfo.data().time);
+                                userFlowerData[id].ready = Timestamp.fromDate(rnUpdate);
 
                                 await updateDoc(gardenRef, {flowers: userFlowerData});
+
+                                // set notification
+                                if(notificationsAllowed) {
+
+                                    setTimeout(() => {
+                                        navigator.serviceWorker.ready.then((registration) => {
+
+                                            try {
+                                        
+                                                registration.showNotification(
+                                                    "Gardemn",
+                                                    {
+                                                        lang: "it",
+                                                        body: `Hey! A new ${element.name} is blossomed! Go check your garden!`,    
+                                                        icon: "/icons/icon.png"
+                                                    }
+                                                )
+
+                                            } catch(err) {
+                                                console.log(err);
+                                            }
+
+                                        })}, (rnUpdate.getTime() - rn.getTime())
+                                    );
+
+                                }
 
                             }
 
@@ -247,10 +275,68 @@
 
     }
 
+    async function getTimer() {
+        
+        if(notificationsAllowed) {
+
+            const gardenInfo = await getDoc(doc(db, "gardens", getUid()));
+            if(gardenInfo.exists()) {
+                gardenInfo.data().flowers.forEach((element: any) => {
+                    if(element.name) {
+
+                        const rn = new Date();
+                        // set notification
+                        if(element.ready.toDate().getTime() > rn.getTime()) {
+
+                            setTimeout(() => {
+                                navigator.serviceWorker.ready.then((registration) => {
+                                    
+                                    try {
+                                        
+                                        registration.showNotification(
+                                            "Gardemn",
+                                            {
+                                                lang: "it",
+                                                body: `Hey! A new ${element.name} is blossomed! Go check your garden!`,    
+                                                icon: "/icons/icon.png"
+                                            }
+                                        )
+
+                                    } catch(err) {
+                                        console.log(err);
+                                    }
+    
+                                })}, (element.ready.toDate().getTime() - rn.getTime())
+                            );
+                            
+                        }
+                        
+                    }
+
+                });
+
+            }
+        }
+
+    }
+
     if(getLogged()) {
+
         getFlowers();
         getSeeds();
+        getTimer();
         getCoins();
+
+        if (!("Notification" in window)) {
+            alert("Questo browser non supporta le notifiche!");
+        } else {
+            Notification.requestPermission().then((permission) => {
+                if (permission !== "granted") {
+                    notificationsAllowed = false;
+                }
+            })
+        }
+
     }
 
 
