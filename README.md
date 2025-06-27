@@ -1,38 +1,25 @@
-# sv
+# Gardemn
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Gardemn is a small PWA where you can cultivate your flower and sell them to buy icons, borders or more seeds!
 
-## Creating a project
 
-If you're seeing this, you've probably already done this step. Congrats!
+## How to play
 
-```bash
-# create a new project in the current directory
-npx sv create
+### Login or Register
 
-# create a new project in my-app
-npx sv create my-app
-```
+First you need to login or register a new account with the two button on the header.
 
-## Developing
+### Buy seeds from the shop
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you're logged in open the shop and buy the seeds of the flower you want to grow in your garden.
+Here's in the shop you can even buy icon and borders to customize your profile!
 
-```bash
-npm run dev
+### Place the seeds in your garden
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+With the button in the header return in the garden and select the seed you want to plant, then select the place where you want to plant it.
+If you wait long enough (and refresh the page) you will see it blossomed!
 
-## Building
+### Sell the flower you've growned
 
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+When your flowers is finally blossemed is time to sell them with the button on the left corner.
+Every flower have a different sell value, try them all!
