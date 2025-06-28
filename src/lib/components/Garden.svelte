@@ -196,7 +196,8 @@
                                                     "Gardemn",
                                                     {
                                                         lang: "it",
-                                                        body: `Hey! A new ${element.name} is blossomed! Go check your garden!`,    
+                                                        body: `Hey! A new ${userFlowerData[id].name} is blossomed!
+                                                        Go check your garden!`,    
                                                         icon: "/icons/icon.png"
                                                     }
                                                 )
@@ -297,7 +298,8 @@
                                             "Gardemn",
                                             {
                                                 lang: "it",
-                                                body: `Hey! A new ${element.name} is blossomed! Go check your garden!`,    
+                                                body: `Hey! A new ${element.name} is blossomed! 
+                                                Go check your garden!`,    
                                                 icon: "/icons/icon.png"
                                             }
                                         )
