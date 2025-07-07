@@ -275,6 +275,7 @@
 
     }
 
+    /*
     async function getTimer() {
         
         if(notificationsAllowed) {
@@ -319,12 +320,13 @@
         }
 
     }
+    */
 
     if(getLogged()) {
 
         getFlowers();
         getSeeds();
-        getTimer();
+        // getTimer();
         getCoins();
 
         if (!("Notification" in window)) {
